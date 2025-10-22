@@ -5,22 +5,26 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Briefcase, Layers, Clock, Factory, Users } from "lucide-react";
 
+// 1) Types
 type Partner = {
   name: string;
-  title: string;
-  headshot: string;
-  short: string;
-  long: React.ReactNode;
+  role: string;
+  bio: string;
+  longBio: string;
+  linkedin: string;
 };
 
+// 2) State typed to allow imgSrc
 export default function DioCapitalFullWebsitePreview() {
-  const [activePartner, setActivePartner] = useState(null);
+  const [activePartner, setActivePartner] = useState<(Partner & { imgSrc: string }) | null>(null);
 
-  const partners = [
+  // 3) Partners typed
+  const partners: Partner[] = [
     {
       name: "Isaac Tipton",
       role: "CEO, Prowire USA & Partner, DIO Capital",
-      bio: "CEO of Prowire USA; operator-investor with finance, M&A and strategy depth; led $200M+ acquisitions; ex-Honeywell engineer; Purdue ME and UVA Darden MBA.",
+      bio:
+        "CEO of Prowire USA; operator-investor with finance, M&A and strategy depth; led $200M+ acquisitions; ex-Honeywell engineer; Purdue ME and UVA Darden MBA.",
       longBio:
         "Isaac is an operator with deep finance, M&A, and strategy experience across manufacturing and distribution. He is CEO of Prowire USA, where he leads commercial growth and day-to-day operations after a career spanning product management, marketing, and corporate development. He has completed more than $200 million in acquisitions and knows how to integrate, professionalize, and scale founder-led companies.\n\nEarlier, Isaac started as a mechanical engineer at Honeywell before moving into leadership roles that blend hands-on operations with disciplined capital allocation. He holds a B.S. in Mechanical Engineering from Purdue and an MBA from UVA Darden (Shermet Award). Based in Phoenix, he brings a pragmatic, partnership-first approach focused on building durable businesses.",
       linkedin: "https://linkedin.com/in/isaactipton",
@@ -28,7 +32,8 @@ export default function DioCapitalFullWebsitePreview() {
     {
       name: "David Hewitt",
       role: "Operating Partner & CEO, DIO Capital",
-      bio: "Operator-CEO who scaled startups and international multi-site businesses; full P&L leadership to $250M revenue; drives transformations while preserving culture, customers, and execution excellence.",
+      bio:
+        "Operator-CEO who scaled startups and international multi-site businesses; full P&L leadership to $250M revenue; drives transformations while preserving culture, customers, and execution excellence.",
       longBio:
         "David is a hands-on executive who has led startups, turnarounds, and multi-site international operations across industrials and interconnect. He has managed full P&Ls from early stage to $250MM+ revenue, delivering performance improvements through disciplined operations, customer focus, and team development.\n\nAt DIO Capital, David partners with founders pursuing succession or the next stage of growth. His approach is collaborative and long-term: protect what works, invest behind clear priorities, and implement the operating cadence that sustains results without losing the company’s DNA.",
       linkedin: "https://linkedin.com/in/davidhewitt",
@@ -36,7 +41,8 @@ export default function DioCapitalFullWebsitePreview() {
     {
       name: "Omri Margalit",
       role: "Partner, Strategy & Supply Chain",
-      bio: "Global operator in supply chain and strategy; led AWS infrastructure supply chains and Samsung initiatives; ex-consultant; UVA Darden MBA, Ben-Gurion Math/Econ; high-altitude climber.",
+      bio:
+        "Global operator in supply chain and strategy; led AWS infrastructure supply chains and Samsung initiatives; ex-consultant; UVA Darden MBA, Ben-Gurion Math/Econ; high-altitude climber.",
       longBio:
         "Omri brings global experience in supply chain management, commercial strategy, and product leadership. At AWS he managed worldwide cloud-infrastructure supply chains, implementing innovations that supported rapid global expansion. Previously in Luxembourg, he restructured Amazon EU’s supplier framework to enable scalable market entry. He also served at Samsung’s Seoul headquarters, helping set cross-company strategy and developing the semiconductor division’s COVID-19 response. He began his career in financial consulting on large energy and transport projects.\n\nOmri holds an MBA from UVA Darden (Genovese Fellowship) and a B.S. in Mathematics & Economics from Ben-Gurion University. An avid high-altitude alpine climber, he brings calm execution under pressure and a systems mindset to building resilient, scalable operations.",
       linkedin: "https://linkedin.com/in/omrimargalit",
