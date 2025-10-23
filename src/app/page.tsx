@@ -53,7 +53,7 @@ export default function DioCapitalFullWebsitePreview() {
     <div className="font-inter text-gray-800">
       {/* Header */}
       <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 bg-white/70 backdrop-blur border-b border-gray-200">
-        <img src="/assets/DIO Logo.jpg" alt="DIO Capital Logo" className="h-12 w-auto object-contain" />
+        <img src="/assets/DIO Logo.png" alt="DIO Capital Logo" className="h-16 w-auto object-contain" />
         <nav className="hidden md:flex space-x-6 font-medium text-gray-700">
           {["Overview", "Who We Work With", "What We Bring", "Partners", "Contact"].map((section) => (
             <a key={section} href={`#${section.toLowerCase().replace(/ /g, "-")}`} className="hover:text-purple-700 transition">
@@ -70,7 +70,7 @@ export default function DioCapitalFullWebsitePreview() {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-transparent"></div>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="relative text-center z-10 px-6">
-          <img src="/assets/DIO Logo.jpg" alt="DIO Logo" className="mx-auto mb-6 h-20 w-auto" />
+          <img src="/assets/DIO Logo.png" alt="DIO Logo" className="mx-auto mb-6 h-64 w-auto" />
           <h1 className="text-5xl md:text-6xl font-playfair mb-4">Building Enduring Businesses, Together.</h1>
           <p className="text-lg md:text-xl mb-6 max-w-2xl mx-auto">
             Helping founder-led businesses grow through thoughtful investment and hands-on partnership.
@@ -198,7 +198,7 @@ export default function DioCapitalFullWebsitePreview() {
 
       {/* Contact */}
       <section id="contact" className="py-24 bg-purple-900 text-white text-center">
-        <img src="/assets/DIO Logo.jpg" alt="DIO Logo" className="mx-auto mb-6 h-16 w-auto" />
+        <img src="/assets/DIO Logo.png" alt="DIO Logo" className="mx-auto mb-6 h-24 w-auto" />
         <h2 className="text-3xl font-playfair mb-6">Contact Us</h2>
         <p className="max-w-xl mx-auto mb-8 text-gray-200">
           Interested in partnering or learning more about DIO Capital Partners? Reach out — we’d love to start a conversation.
