@@ -174,7 +174,7 @@ export default function DioCapitalFullWebsitePreview() {
               p.name === "Isaac Tipton"
                 ? "/assets/Isaac Headshot.png"
                 : p.name === "Omri Margalit"
-                ? "/assets/Omri Headshot.png"
+                ? "/assets/Omri Headshot.jfif"
                 : p.name === "David Hewitt"
                 ? "/assets/David Headshot.jpeg"
                 : "https://via.placeholder.com/200x200?text=Headshot";
