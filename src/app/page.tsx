@@ -24,7 +24,7 @@ export default function DioCapitalFullWebsitePreview() {
       name: "Isaac Tipton",
       role: "CEO, Prowire USA & Partner, DIO Capital",
       bio:
-        "CEO of Prowire USA; operator-investor with finance, M&A and strategy depth; led $200M+ acquisitions; ex-Honeywell engineer; Purdue ME and UVA Darden MBA.",
+        "CEO of Prowire USA; operator-investor with finance, M&A and strategy depth; led $200M+ acquisitions; ex-Honeywell engineer; UVA Darden MBA and Purdue ME.",
       longBio:
         "Isaac is an operator with deep finance, M&A, and strategy experience across manufacturing and distribution. He is CEO of Prowire USA, where he leads commercial growth and day-to-day operations after a career spanning product management, marketing, and corporate development. He has completed more than $200 million in acquisitions and knows how to integrate, professionalize, and scale founder-led companies.\n\nEarlier, Isaac started as a mechanical engineer at Honeywell before moving into leadership roles that blend hands-on operations with disciplined capital allocation. He holds a B.S. in Mechanical Engineering from Purdue and an MBA from UVA Darden (Shermet Award). Based in Phoenix, he brings a pragmatic, partnership-first approach focused on building durable businesses.",
       linkedin: "https://linkedin.com/in/isaac-tipton",
@@ -42,9 +42,9 @@ export default function DioCapitalFullWebsitePreview() {
       name: "Omri Margalit",
       role: "Partner, Strategy & Supply Chain",
       bio:
-        "Global operator in supply chain and strategy; led AWS infrastructure supply chains and Samsung initiatives; ex-consultant; UVA Darden MBA, Ben-Gurion Math/Econ; high-altitude climber.",
+        "Global leader in supply chain and strategy; led AWS supply chain teams and Samsung c-suite strategic initiatives; UVA Darden MBA, Ben-Gurion Mathematics; high-altitude climber.",
       longBio:
-        "Omri brings global experience in supply chain management, commercial strategy, and product leadership. At AWS he managed worldwide cloud-infrastructure supply chains, implementing innovations that supported rapid global expansion. Previously in Luxembourg, he restructured Amazon EU’s supplier framework to enable scalable market entry. He also served at Samsung’s Seoul headquarters, helping set cross-company strategy and developing the semiconductor division’s COVID-19 response. He began his career in financial consulting on large energy and transport projects.\n\nOmri holds an MBA from UVA Darden (Genovese Fellowship) and a B.S. in Mathematics & Economics from Ben-Gurion University. An avid high-altitude alpine climber, he brings calm execution under pressure and a systems mindset to building resilient, scalable operations.",
+        "Omri brings global experience in supply chain management, commercial strategy, and product leadership. At AWS he managed worldwide cloud-infrastructure supply chains, implementing innovations that supported rapid global expansion. Previously in Luxembourg, he restructured Amazon EU’s supplier framework to enable scalable market entry. He also served at Samsung’s Seoul headquarters, advising executives on cross-company strategy and developing the semiconductor division’s COVID-19 response. He began his career in financial consulting on large energy and transport projects.\n\nOmri holds an MBA from UVA Darden (Genovese Fellowship) and a B.Sc. in Mathematics & Economics from Ben-Gurion University. An avid high-altitude alpine climber, he brings calm execution under pressure and a systems mindset to building resilient, scalable operations.",
       linkedin: "https://linkedin.com/in/omri-margalit",
     },
   ];
@@ -99,7 +99,7 @@ export default function DioCapitalFullWebsitePreview() {
         <h2 className="text-3xl font-playfair mb-6 text-purple-800">Who We Work With</h2>
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {[
-            { icon: <Factory className="text-purple-600 w-12 h-12 mx-auto mb-4" />, title: "Industrial & Manufacturing", desc: "Companies with strong market positions and room for operational improvement." },
+            { icon: <Factory className="text-purple-600 w-12 h-12 mx-auto mb-4" />, title: "Distribution & Niche Manufacturing", desc: "Companies with strong market positions and room for operational improvement." },
             { icon: <Users className="text-purple-600 w-12 h-12 mx-auto mb-4" />, title: "Founder-Owned", desc: "Businesses where legacy and long-term partnership matter." },
             { icon: <Clock className="text-purple-600 w-12 h-12 mx-auto mb-4" />, title: "$2M–$12M EBITDA", desc: "Established companies ready to scale sustainably." },
           ].map(({ icon, title, desc }) => (
@@ -141,15 +141,15 @@ export default function DioCapitalFullWebsitePreview() {
         <div>
           <h2 className="text-3xl font-playfair mb-6 text-purple-800">What We Bring to the Table</h2>
           <p className="text-gray-700 mb-6">
-            We bring a rare combination of operational leadership, strategic insight, and long-term investment perspective. Our approach enables founder-led businesses
+            We bring a practical combination of operational experience, strategic insight, and long-term perspective. Our approach enables founder-led businesses
             to thrive while maintaining their core identity and legacy.
           </p>
         </div>
         <div className="flex flex-col gap-6">
           {[
-            { icon: <Briefcase className="text-purple-600 w-10 h-10 mb-2" />, title: "Operators First", desc: "We’ve run businesses ourselves — we understand execution, not just transactions." },
-            { icon: <Layers className="text-purple-600 w-10 h-10 mb-2" />, title: "Strategic Depth", desc: "We bring insight from global leadership roles across operations, finance, and strategy." },
-            { icon: <Clock className="text-purple-600 w-10 h-10 mb-2" />, title: "Long-Term Focus", desc: "We build sustainable value — not short-term flips — preserving founder legacy." },
+            { icon: <Briefcase className="text-purple-600 w-10 h-10 mb-2" />, title: "Operators First", desc: "We’ve run businesses ourselves — we are operators, not financial engineers." },
+            { icon: <Layers className="text-purple-600 w-10 h-10 mb-2" />, title: "Strategic Depth", desc: "We bring expertise in operations, finance, and strategy, with prior roles in businesses from $2M to $200M+" },
+            { icon: <Clock className="text-purple-600 w-10 h-10 mb-2" />, title: "Growth Focus", desc: "We build sustainable value by supporting continued investment into the business" },
           ].map(({ icon, title, desc }) => (
             <div key={title} className="flex items-start gap-4 bg-white rounded-2xl p-6 shadow-md hover:shadow-lg border border-gray-100 transition">
               <div className="flex-shrink-0">{icon}</div>
