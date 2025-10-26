@@ -22,7 +22,7 @@ export default function DioCapitalFullWebsitePreview() {
   const partners: Partner[] = [
     {
       name: "Isaac Tipton",
-      role: "CEO, Prowire USA & Partner, DIO Capital",
+      role: "Partner, DIO Capital & CEO, ProWire USA",
       bio:
         "CEO of Prowire USA; operator-investor with finance, M&A and strategy depth; led $200M+ acquisitions; ex-Honeywell engineer; UVA Darden MBA and Purdue ME.",
       longBio:
@@ -31,7 +31,7 @@ export default function DioCapitalFullWebsitePreview() {
     },
     {
       name: "David Hewitt",
-      role: "Operating Partner & CEO, DIO Capital",
+      role: "Partner, DIO Capital",
       bio:
         "Operator-CEO who scaled startups and international multi-site businesses; full P&L leadership to $250M revenue; drives transformations while preserving culture, customers, and execution excellence.",
       longBio:
@@ -40,7 +40,7 @@ export default function DioCapitalFullWebsitePreview() {
     },
     {
       name: "Omri Margalit",
-      role: "Partner, Strategy & Supply Chain",
+      role: "Partner, DIO Capital",
       bio:
         "Global leader in supply chain and strategy; led AWS supply chain teams and Samsung c-suite strategic initiatives; UVA Darden MBA, Ben-Gurion Mathematics; high-altitude climber.",
       longBio:
