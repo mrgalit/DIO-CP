@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Briefcase, Layers, Clock, Factory, Users } from "lucide-react";
@@ -12,11 +13,12 @@ type Partner = {
   bio: string;
   longBio: string;
   linkedin: string;
+  imgSrc: string;
 };
 
-// 2) State typed to allow imgSrc
+// 2) State
 export default function DioCapitalFullWebsitePreview() {
-  const [activePartner, setActivePartner] = useState<(Partner & { imgSrc: string }) | null>(null);
+  const [activePartner, setActivePartner] = useState<Partner | null>(null);
 
   // 3) Partners typed
   const partners: Partner[] = [
@@ -28,6 +30,7 @@ export default function DioCapitalFullWebsitePreview() {
       longBio:
         "Isaac is an operator with deep finance, M&A, and strategy experience across manufacturing and distribution. He is CEO of Prowire USA, where he leads commercial growth and day-to-day operations after a career spanning product management, marketing, and corporate development. He has completed more than $200 million in acquisitions and knows how to integrate, professionalize, and scale founder-led companies.\n\nEarlier, Isaac started as a mechanical engineer at Honeywell before moving into leadership roles that blend hands-on operations with disciplined capital allocation. He holds a B.S. in Mechanical Engineering from Purdue and an MBA from UVA Darden (Shermet Award). Based in Phoenix, he brings a pragmatic, partnership-first approach focused on building durable businesses.",
       linkedin: "https://linkedin.com/in/isaac-tipton",
+      imgSrc: "/assets/isaac-tipton.jpg",
     },
     {
       name: "David Hewitt",
@@ -37,6 +40,7 @@ export default function DioCapitalFullWebsitePreview() {
       longBio:
         "David is a hands-on executive who has led startups, turnarounds, and multi-site international operations across industrials and interconnect. He has managed full P&Ls from early stage to $250MM+ revenue, delivering performance improvements through disciplined operations, customer focus, and team development.\n\nAt DIO Capital, David partners with founders pursuing succession or the next stage of growth. His approach is collaborative and long-term: protect what works, invest behind clear priorities, and implement the operating cadence that sustains results without losing the company’s DNA.",
       linkedin: "https://linkedin.com/in/davidehewitt",
+      imgSrc: "/assets/david-hewitt.jpg",
     },
     {
       name: "Omri Margalit",
@@ -46,6 +50,7 @@ export default function DioCapitalFullWebsitePreview() {
       longBio:
         "Omri brings global experience in supply chain management, commercial strategy, and product leadership. At AWS he managed worldwide cloud-infrastructure supply chains, implementing innovations that supported rapid global expansion. Previously in Luxembourg, he restructured Amazon EU’s supplier framework to enable scalable market entry. He also served at Samsung’s Seoul headquarters, advising executives on cross-company strategy and developing the semiconductor division’s COVID-19 response. He began his career in financial consulting on large energy and transport projects.\n\nOmri holds an MBA from UVA Darden (Genovese Fellowship) and a B.Sc. in Mathematics & Economics from Ben-Gurion University. An avid high-altitude alpine climber, he brings calm execution under pressure and a systems mindset to building resilient, scalable operations.",
       linkedin: "https://linkedin.com/in/omri-margalit",
+      imgSrc: "/assets/omri-margalit.jpg",
     },
   ];
 
@@ -53,7 +58,7 @@ export default function DioCapitalFullWebsitePreview() {
     <div className="font-inter text-gray-800">
       {/* Header */}
       <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 bg-white/70 backdrop-blur border-b border-gray-200">
-        <img src="/assets/DIO-Logo.png" alt="DIO Capital Logo" className="h-16 w-auto object-contain" />
+        <Image src="/assets/DIO-Logo.png" alt="DIO Capital Logo" width={354} height={252} priority className="h-16 w-auto object-contain" />
         <nav className="hidden md:flex space-x-6 font-medium text-gray-700">
           {["Overview", "Who We Work With", "What We Bring", "Partners", "Contact"].map((section) => (
             <a key={section} href={`#${section.toLowerCase().replace(/ /g, "-")}`} className="hover:text-purple-700 transition">
@@ -64,13 +69,18 @@ export default function DioCapitalFullWebsitePreview() {
       </header>
 
       {/* Hero */}
-      <section
-        className="relative h-screen bg-fixed bg-center bg-cover flex flex-col items-center justify-center text-white"
-        style={{ backgroundImage: "url(https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1920&q=80)" }}
-      >
+      <section className="relative h-screen overflow-hidden flex flex-col items-center justify-center text-white">
+        <Image
+          src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-transparent"></div>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="relative text-center z-10 px-6">
-          <img src="/assets/DIO-Logo.png" alt="DIO-Logo" className="mx-auto mb-6 h-64 w-auto" />
+          <Image src="/assets/DIO-Logo.png" alt="DIO Capital Logo" width={354} height={252} priority className="mx-auto mb-6 h-64 w-auto" />
           <h1 className="text-5xl md:text-6xl font-playfair mb-4">Building Enduring Businesses, Together.</h1>
           <p className="text-lg md:text-xl mb-6 max-w-2xl mx-auto">
             Helping founder-led businesses grow through thoughtful investment and hands-on partnership.
@@ -92,10 +102,12 @@ export default function DioCapitalFullWebsitePreview() {
           <p>Our goal is to preserve what makes each business special while professionalizing management and operations to unlock new potential.</p>
         </div>
         <div className="relative h-64 w-full rounded-xl overflow-hidden">
-  <img
-    src="/assets/overview-industrial.png"
+  <Image
+    src="/assets/overview-industrial.jpg"
     alt="Industrial landscape at sunrise"
-    className="absolute inset-0 h-full w-full object-cover"
+    fill
+    sizes="(min-width: 768px) 50vw, 100vw"
+    className="object-cover"
   />
   <div className="absolute inset-0 bg-black/15" />
 </div>
@@ -124,9 +136,9 @@ export default function DioCapitalFullWebsitePreview() {
       <section id="platforms" className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-8 grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <img src="/assets/Prowiresa_Website-Logo.png" alt="Prowire USA logo" className="h-14 w-auto mb-4" />
+            <Image src="/assets/Prowiresa_Website-Logo.png" alt="Prowire USA logo" width={400} height={132} className="h-14 w-auto mb-4" />
             <h3 className="text-2xl font-playfair text-purple-800 mb-3">
-              Prowire USA <span className="text-sm text-gray-500">— Acquired July 2025. Seeking add-on acquisitions</span>
+              Prowire USA <span className="font-inter text-sm text-gray-500">— Acquired July 2025. Seeking add-on acquisitions</span>
             </h3>
             <p className="text-gray-700">
               Prowire USA is a value-added distributor of wire, cable, and connector components serving the high-performance motorsports and aviation markets. Services
@@ -137,9 +149,15 @@ export default function DioCapitalFullWebsitePreview() {
             </a>
           </div>
           <div className="grid grid-cols-3 gap-3">
-            <img src="/assets/Prowire Kit_1.png" alt="Prowire kit photo" className="rounded-xl object-cover w-full h-36" />
-            <img src="/assets/Prowire Kit_2.png" alt="Prowire kit board" className="rounded-xl object-cover w-full h-36" />
-            <img src="/assets/Prowire strips.png" alt="Prowire wire strips" className="rounded-xl object-cover w-full h-36" />
+            {[
+              { src: "/assets/prowire-kit-1.jpg", alt: "Prowire kit photo" },
+              { src: "/assets/prowire-kit-2.jpg", alt: "Prowire kit board" },
+              { src: "/assets/prowire-strips.jpg", alt: "Prowire wire strips" },
+            ].map(({ src, alt }) => (
+              <div key={src} className="relative h-36 w-full overflow-hidden rounded-xl">
+                <Image src={src} alt={alt} fill sizes="(min-width: 768px) 16vw, 33vw" className="object-cover" />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -178,21 +196,13 @@ export default function DioCapitalFullWebsitePreview() {
         </p>
         <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
           {partners.map((p) => {
-            const imgSrc =
-              p.name === "Isaac Tipton"
-                ? "/assets/Isaac Headshot.png"
-                : p.name === "Omri Margalit"
-                ? "/assets/Omri Headshot.jfif"
-                : p.name === "David Hewitt"
-                ? "/assets/David Headshot.jpeg"
-                : "https://via.placeholder.com/200x200?text=Headshot";
             return (
               <div key={p.name} className="p-6 rounded-xl bg-gray-50 shadow-md border border-gray-100 hover:shadow-lg transition flex flex-col items-center">
-                <img src={imgSrc} alt={`${p.name} photo`} className="rounded-full h-32 w-32 object-cover mb-4" />
+                <Image src={p.imgSrc} alt={`${p.name} photo`} width={128} height={128} className="rounded-full h-32 w-32 object-cover mb-4" />
                 <h3 className="text-xl font-semibold text-purple-800 mb-1">{p.name}</h3>
                 <p className="text-sm text-gray-500 mb-3">{p.role}</p>
                 <p className="text-gray-600 text-sm mb-4">{p.bio}</p>
-                <button onClick={() => setActivePartner({ ...p, imgSrc })} className="text-purple-700 font-medium hover:underline">
+                <button onClick={() => setActivePartner(p)} className="text-purple-700 font-medium hover:underline">
                   Read more
                 </button>
                 <a href={p.linkedin} target="_blank" className="text-purple-700 font-medium hover:underline mt-3" rel="noreferrer">
@@ -206,7 +216,7 @@ export default function DioCapitalFullWebsitePreview() {
 
       {/* Contact */}
       <section id="contact" className="py-24 bg-purple-900 text-white text-center">
-        <img src="/assets/DIO-Logo.png" alt="DIO-Logo" className="mx-auto mb-6 h-24 w-auto" />
+        <Image src="/assets/DIO-Logo.png" alt="DIO Capital Logo" width={354} height={252} className="mx-auto mb-6 h-24 w-auto" />
         <h2 className="text-3xl font-playfair mb-6">Contact Us</h2>
         <p className="max-w-xl mx-auto mb-8 text-gray-200">
           Interested in partnering or learning more about DIO Capital Partners? Reach out — we’d love to start a conversation.
@@ -224,7 +234,7 @@ export default function DioCapitalFullWebsitePreview() {
           <div className="absolute inset-0 bg-black/60" onClick={() => setActivePartner(null)}></div>
           <div className="relative mx-auto my-12 max-w-2xl bg-white rounded-2xl shadow-2xl border border-gray-200 p-6 z-[110]">
             <div className="flex items-start gap-4">
-              <img src={activePartner.imgSrc} alt={`${activePartner.name} photo`} className="rounded-full h-20 w-20 object-cover" />
+              <Image src={activePartner.imgSrc} alt={`${activePartner.name} photo`} width={80} height={80} className="rounded-full h-20 w-20 object-cover" />
               <div>
                 <h3 id="partner-title" className="text-2xl font-playfair text-purple-800">{activePartner.name}</h3>
                 <p className="text-sm text-gray-500">{activePartner.role}</p>
