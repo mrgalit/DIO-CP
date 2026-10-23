@@ -1,24 +1,32 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Hanken_Grotesk, IBM_Plex_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const hanken = Hanken_Grotesk({
+  variable: "--font-hanken",
   subsets: ["latin"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
   subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+});
+
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 const title = "DIO Capital Partners";
 const description =
-  "DIO Capital Partners is an independent sponsor partnering with founder-owned distribution and niche manufacturing businesses to help them scale responsibly.";
+  "DIO Capital Partners buys and builds founder-owned distribution and niche manufacturing businesses, investing patient capital as hands-on operators.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.dio-capital.com"),
-  title,
+  title: { default: title, template: `%s · ${title}` },
   description,
   alternates: { canonical: "/" },
   openGraph: {
@@ -43,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${playfair.variable} font-inter antialiased`}
+        className={`${hanken.variable} ${newsreader.variable} ${plexMono.variable}`}
       >
         {children}
       </body>

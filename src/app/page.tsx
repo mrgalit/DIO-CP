@@ -1,253 +1,309 @@
-"use client";
-
-import React, { useState } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import { Briefcase, Layers, Clock, Factory, Users } from "lucide-react";
+import Link from "next/link";
+import { PartnerCards } from "@/components/PartnerCards";
+import { SiteFooter } from "@/components/SiteFooter";
+import { contactEmail, criteria, criteriaPdf, faqs, partners, pillars, platforms, releases } from "@/content/site";
 
-// 1) Types
-type Partner = {
-  name: string;
-  role: string;
-  bio: string;
-  longBio: string;
-  linkedin: string;
-  imgSrc: string;
-};
+const nav = [
+  { href: "#criteria", label: "What we look for" },
+  { href: "#approach", label: "Approach" },
+  { href: "#founders", label: "For founders" },
+  { href: "#portfolio", label: "Portfolio" },
+  { href: "#news", label: "News" },
+  { href: "#team", label: "Team" },
+];
 
-// 2) State
-export default function DioCapitalFullWebsitePreview() {
-  const [activePartner, setActivePartner] = useState<Partner | null>(null);
-
-  // 3) Partners typed
-  const partners: Partner[] = [
-    {
-      name: "Isaac Tipton",
-      role: "Partner, DIO Capital & CEO, ProWire USA",
-      bio:
-        "CEO of Prowire USA; operator-investor with finance, M&A and strategy depth; led $200M+ acquisitions; ex-Honeywell engineer; UVA Darden MBA and Purdue ME.",
-      longBio:
-        "Isaac is an operator with deep finance, M&A, and strategy experience across manufacturing and distribution. He is CEO of Prowire USA, where he leads commercial growth and day-to-day operations after a career spanning product management, marketing, and corporate development. He has completed more than $200 million in acquisitions and knows how to integrate, professionalize, and scale founder-led companies.\n\nEarlier, Isaac started as a mechanical engineer at Honeywell before moving into leadership roles that blend hands-on operations with disciplined capital allocation. He holds a B.S. in Mechanical Engineering from Purdue and an MBA from UVA Darden (Shermet Award). Based in Phoenix, he brings a pragmatic, partnership-first approach focused on building durable businesses.",
-      linkedin: "https://linkedin.com/in/isaac-tipton",
-      imgSrc: "/assets/isaac-tipton.jpg",
-    },
-    {
-      name: "David Hewitt",
-      role: "Partner, DIO Capital",
-      bio:
-        "Operator-CEO who scaled startups and international multi-site businesses; full P&L leadership to $250M revenue; drives transformations while preserving culture, customers, and execution excellence.",
-      longBio:
-        "David is a hands-on executive who has led startups, turnarounds, and multi-site international operations across industrials and interconnect. He has managed full P&Ls from early stage to $250MM+ revenue, delivering performance improvements through disciplined operations, customer focus, and team development.\n\nAt DIO Capital, David partners with founders pursuing succession or the next stage of growth. His approach is collaborative and long-term: protect what works, invest behind clear priorities, and implement the operating cadence that sustains results without losing the company’s DNA.",
-      linkedin: "https://linkedin.com/in/davidehewitt",
-      imgSrc: "/assets/david-hewitt.jpg",
-    },
-    {
-      name: "Omri Margalit",
-      role: "Partner, DIO Capital",
-      bio:
-        "Global leader in supply chain and strategy; led AWS supply chain teams and Samsung c-suite strategic initiatives; UVA Darden MBA, Ben-Gurion Mathematics; high-altitude climber.",
-      longBio:
-        "Omri brings global experience in supply chain management, commercial strategy, and product leadership. At AWS he managed worldwide cloud-infrastructure supply chains, implementing innovations that supported rapid global expansion. Previously in Luxembourg, he restructured Amazon EU’s supplier framework to enable scalable market entry. He also served at Samsung’s Seoul headquarters, advising executives on cross-company strategy and developing the semiconductor division’s COVID-19 response. He began his career in financial consulting on large energy and transport projects.\n\nOmri holds an MBA from UVA Darden (Genovese Fellowship) and a B.Sc. in Mathematics & Economics from Ben-Gurion University. An avid high-altitude alpine climber, he brings calm execution under pressure and a systems mindset to building resilient, scalable operations.",
-      linkedin: "https://linkedin.com/in/omri-margalit",
-      imgSrc: "/assets/omri-margalit.jpg",
-    },
-  ];
-
+function ArrowUpRight() {
   return (
-    <div className="font-inter text-gray-800">
-      {/* Header */}
-      <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 bg-white/70 backdrop-blur border-b border-gray-200">
-        <Image src="/assets/DIO-Logo.png" alt="DIO Capital Logo" width={354} height={252} priority className="h-16 w-auto object-contain" />
-        <nav className="hidden md:flex space-x-6 font-medium text-gray-700">
-          {["Overview", "Who We Work With", "What We Bring", "Partners", "Contact"].map((section) => (
-            <a key={section} href={`#${section.toLowerCase().replace(/ /g, "-")}`} className="hover:text-purple-700 transition">
-              {section}
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M7 17 17 7" />
+      <path d="M8 7h9v9" />
+    </svg>
+  );
+}
+
+export default function Home() {
+  return (
+    <>
+      <header className="sticky top-0 z-40 border-b border-rule bg-stone/90 backdrop-blur">
+        <div className="wrap flex h-[84px] items-center justify-between">
+          <a href="#top" aria-label="DIO Capital Partners home" className="flex items-center">
+            <Image src="/assets/DIO-Logo.png" alt="DIO Capital" width={354} height={252} priority className="h-14 w-auto" />
+          </a>
+          <nav aria-label="Main" className="flex items-center gap-9 text-[15px] font-medium">
+            {nav.map((n) => (
+              <a key={n.href} href={n.href} className="hidden text-ink no-underline hover:text-navy lg:inline">
+                {n.label}
+              </a>
+            ))}
+            <a href="#contact" className="btn-primary min-h-[44px]">
+              Start a conversation
             </a>
-          ))}
-        </nav>
+          </nav>
+        </div>
       </header>
 
-      {/* Hero */}
-      <section className="relative h-screen overflow-hidden flex flex-col items-center justify-center text-white">
-        <Image
-          src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-transparent"></div>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="relative text-center z-10 px-6">
-          <Image src="/assets/DIO-Logo.png" alt="DIO Capital Logo" width={354} height={252} priority className="mx-auto mb-6 h-64 w-auto" />
-          <h1 className="text-5xl md:text-6xl font-playfair mb-4">Building Enduring Businesses, Together.</h1>
-          <p className="text-lg md:text-xl mb-6 max-w-2xl mx-auto">
-            Helping founder-led businesses grow through thoughtful investment and hands-on partnership.
-          </p>
-          <Button asChild className="border-2 border-purple-300 text-white bg-purple-600/80 hover:bg-purple-700 transition-all duration-300 text-lg md:text-xl px-8 py-4">
-            <a href="#contact">Get in Touch</a>
-          </Button>
-        </motion.div>
-      </section>
-
-      {/* Overview */}
-      <section id="overview" className="py-24 px-8 grid md:grid-cols-2 gap-12 items-center bg-gray-50">
-        <div>
-          <h2 className="text-3xl font-playfair mb-4 text-purple-800">About DIO Capital Partners</h2>
-          <p className="mb-4">
-            DIO Capital Partners is an independent sponsor that partners with founder-owned businesses to help them scale responsibly. We blend operational
-            experience, strategic insight, and patient capital to sustain long-term growth and success.
-          </p>
-          <p>Our goal is to preserve what makes each business special while professionalizing management and operations to unlock new potential.</p>
-        </div>
-        <div className="relative h-64 w-full rounded-xl overflow-hidden">
-  <Image
-    src="/assets/overview-industrial.jpg"
-    alt="Industrial landscape at sunrise"
-    fill
-    sizes="(min-width: 768px) 50vw, 100vw"
-    className="object-cover"
-  />
-  <div className="absolute inset-0 bg-black/15" />
-</div>
-
-      </section>
-
-      {/* Who We Work With */}
-      <section id="who-we-work-with" className="py-24 bg-white text-center">
-        <h2 className="text-3xl font-playfair mb-6 text-purple-800">Who We Work With</h2>
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {[
-            { icon: <Factory className="text-purple-600 w-12 h-12 mx-auto mb-4" />, title: "Distribution & Niche Manufacturing", desc: "Companies with strong market positions and room for operational improvement." },
-            { icon: <Users className="text-purple-600 w-12 h-12 mx-auto mb-4" />, title: "Founder-Owned", desc: "Businesses where legacy and long-term partnership matter." },
-            { icon: <Clock className="text-purple-600 w-12 h-12 mx-auto mb-4" />, title: "$2M–$12M EBITDA", desc: "Established companies ready to scale sustainably." },
-          ].map(({ icon, title, desc }) => (
-            <div key={title} className="p-8 rounded-xl shadow-md bg-gradient-to-b from-gray-50 to-purple-50 border border-gray-100 hover:shadow-lg transition">
-              {icon}
-              <h3 className="text-xl font-semibold mb-2">{title}</h3>
-              <p className="text-gray-600">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Platforms */}
-      <section id="platforms" className="py-24 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-8 grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <Image src="/assets/Prowiresa_Website-Logo.png" alt="Prowire USA logo" width={400} height={132} className="h-14 w-auto mb-4" />
-            <h3 className="text-2xl font-playfair text-purple-800 mb-3">
-              Prowire USA <span className="font-inter text-sm text-gray-500">— Acquired July 2025. Seeking add-on acquisitions</span>
-            </h3>
-            <p className="text-gray-700">
-              Prowire USA is a value-added distributor of wire, cable, and connector components serving the high-performance motorsports and aviation markets. Services
-              include striping, spooling, kitting, and same-day shipping. Prowire wins through ease of business and superior service.
-            </p>
-            <a href="https://prowireusa.com" target="_blank" className="inline-block mt-4 text-purple-700 font-medium hover:underline" rel="noreferrer">
-              Visit prowireusa.com →
-            </a>
-          </div>
-          <div className="grid grid-cols-3 gap-3">
-            {[
-              { src: "/assets/prowire-kit-1.jpg", alt: "Prowire kit photo" },
-              { src: "/assets/prowire-kit-2.jpg", alt: "Prowire kit board" },
-              { src: "/assets/prowire-strips.jpg", alt: "Prowire wire strips" },
-            ].map(({ src, alt }) => (
-              <div key={src} className="relative h-36 w-full overflow-hidden rounded-xl">
-                <Image src={src} alt={alt} fill sizes="(min-width: 768px) 16vw, 33vw" className="object-cover" />
+      <main>
+        {/* Hero */}
+        <section id="top" className="py-16 md:py-24">
+          <div className="wrap grid items-center gap-12 md:grid-cols-[7fr_5fr] md:gap-[72px]">
+            <div className="flex flex-col gap-7">
+              <span className="label text-[13px] text-brass-text">Independent sponsor · Building enduring businesses</span>
+              <h1 className="h1 max-w-[631px] text-harbor">
+                We buy and build founder-owned businesses focused on distribution and niche manufacturing.
+              </h1>
+              <p className="max-w-[580px] text-xl text-slate-body">
+                DIO Capital Partners works with established companies with a proven record of growth. We invest patient capital and run the
+                business alongside you as hands-on operators, preserving what makes it special.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-2">
+                <a href="#contact" className="btn-primary">Start a conversation</a>
+                <a href="#criteria" className="btn-outline">See what we look for</a>
               </div>
+            </div>
+            <figure className="relative mx-auto w-full max-w-[461px]">
+              <Image
+                src="/assets/prowire-hq-corner.jpg"
+                alt="Prowire USA headquarters"
+                width={1600}
+                height={1200}
+                priority
+                sizes="(min-width: 768px) 461px, 100vw"
+                className="aspect-[4/5] w-full rounded-sm object-cover object-right"
+              />
+              <figcaption className="absolute bottom-8 left-4 flex max-w-[260px] flex-col gap-1 bg-white px-6 py-5 shadow-[0_12px_32px_rgba(14,42,63,0.14)] md:-left-8">
+                <span className="font-serif text-[22px] leading-tight text-harbor">Prowire USA</span>
+                <span className="text-sm text-slate-body">Acquired July 2025</span>
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        {/* Criteria */}
+        <section id="criteria" className="border-y border-rule bg-white">
+          <div className="wrap flex flex-col gap-8 py-[72px]">
+            <div className="flex flex-wrap items-baseline justify-between gap-4">
+              <h2 className="text-4xl leading-tight text-harbor">What we look for</h2>
+              <span className="label text-slate-faint">Investment criteria</span>
+            </div>
+            <div className="grid md:grid-cols-3">
+              {criteria.map((c, i) => (
+                <div
+                  key={c.label}
+                  className={`flex flex-col gap-2.5 border-t border-rule-strong py-6 md:border-t-0 md:py-8 ${i > 0 ? "md:border-l md:pl-8" : ""} md:pr-8`}
+                >
+                  <span className="label text-brass-text">{c.label}</span>
+                  <span className="font-serif text-[28px] leading-tight text-harbor">{c.title}</span>
+                  <span className="text-[15px] text-slate-muted">{c.text}</span>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-wrap items-center justify-between gap-4 rounded-sm bg-stone px-6 py-5">
+              <span className="text-[15px] text-slate-body">
+                <strong className="text-harbor">Brokers and advisors:</strong> our criteria on one page, ready to forward.
+              </span>
+              <a href={criteriaPdf} download className="inline-flex min-h-[44px] items-center gap-2 text-[15px] font-semibold">
+                Download criteria sheet (PDF)
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 4v12" />
+                  <path d="m6 10 6 6 6-6" />
+                  <path d="M5 20h14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Approach */}
+        <section id="approach" className="py-24 md:py-32">
+          <div className="wrap grid gap-10 md:grid-cols-[5fr_7fr] md:gap-24">
+            <div className="flex flex-col gap-6">
+              <span className="label text-brass-text">Our approach</span>
+              <h2 className="h2 text-harbor">Operators, not financial engineers.</h2>
+              <p className="text-slate-body">
+                DIO Capital Partners is an independent sponsor that partners with founder-owned businesses to help them scale responsibly. We
+                blend operational experience, strategic insight, and patient capital to sustain long-term growth and success.
+              </p>
+              <p className="text-slate-body">
+                Our goal is to preserve what makes each business special while professionalizing management and operations to unlock new
+                potential.
+              </p>
+            </div>
+            <div className="border-b border-rule-strong">
+              {pillars.map((p, i) => (
+                <div key={p.title} className="grid grid-cols-[56px_1fr] gap-4 border-t border-rule-strong py-8 md:grid-cols-[72px_1fr]">
+                  <span className="font-serif text-[40px] leading-none text-brass">{String(i + 1).padStart(2, "0")}</span>
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-[28px] leading-tight text-harbor">{p.title}</h3>
+                    <p className="text-slate-muted">{p.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* For founders */}
+        <section id="founders" className="border-t border-rule bg-white py-24 md:py-[120px]">
+          <div className="wrap grid gap-10 md:grid-cols-[4fr_8fr] md:gap-24">
+            <div className="flex flex-col gap-5">
+              <span className="label text-brass-text">For founders</span>
+              <h2 className="h2 text-harbor">What partnering with us looks like.</h2>
+              <p className="text-slate-body">The questions founders ask us first, answered plainly.</p>
+              <a href="#contact" className="btn-outline self-start">Ask us anything else</a>
+            </div>
+            <dl className="border-b border-rule-strong">
+              {faqs.map((f) => (
+                <div key={f.q} className="grid gap-2 border-t border-rule-strong py-7 md:grid-cols-[5fr_7fr] md:gap-10">
+                  <dt className="font-serif text-2xl leading-snug text-harbor">{f.q}</dt>
+                  <dd className="text-base text-slate-muted">{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        {/* Portfolio */}
+        <section id="portfolio" className="bg-harbor py-24 text-white md:py-[120px]">
+          <div className="wrap flex flex-col gap-14">
+            <div className="flex flex-wrap items-baseline justify-between gap-4">
+              <h2 className="h2 text-white">Portfolio</h2>
+              <span className="label text-brass">Platforms &amp; add-on acquisitions</span>
+            </div>
+
+            {platforms.map((pf) => (
+              <article key={pf.name} className="flex flex-col gap-12">
+                <div className="grid items-center gap-10 md:grid-cols-[6fr_5fr] md:gap-16">
+                  <div className="flex flex-col gap-6">
+                    <div className="self-start rounded-sm bg-white px-5 py-4">
+                      <Image src={pf.logo.src} alt={pf.logo.alt} width={pf.logo.width} height={pf.logo.height} className="h-11 w-auto" />
+                    </div>
+                    <div className="flex flex-wrap gap-x-6 gap-y-2">
+                      <span className="label text-brass">Platform</span>
+                      <span className="label text-mist">Acquired {pf.acquired}</span>
+                      <span className="label text-mist">{pf.markets}</span>
+                    </div>
+                    <p className="font-serif text-[28px] leading-snug text-white">{pf.summary}</p>
+                    <p className="text-mist-light">{pf.detail}</p>
+                    <a href={pf.url} target="_blank" rel="noreferrer" className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-white hover:text-mist-lighter">
+                      Visit {pf.domain}
+                      <ArrowUpRight />
+                    </a>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    {pf.photos.map((ph, i) => (
+                      <Image
+                        key={ph.src}
+                        src={ph.src}
+                        alt={ph.alt}
+                        width={ph.width}
+                        height={ph.height}
+                        sizes={i === 0 ? "(min-width: 768px) 500px, 100vw" : "(min-width: 768px) 250px, 50vw"}
+                        className={`w-full rounded-sm object-cover ${i === 0 ? "col-span-2 aspect-video" : "aspect-[4/3]"}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {pf.quote && (
+                  <figure className="flex max-w-[880px] flex-col gap-4 border-t border-white/15 pt-10">
+                    <blockquote className="font-serif text-2xl leading-snug text-white md:text-[32px]">“{pf.quote.text}”</blockquote>
+                    <figcaption className="text-[15px] text-mist">{pf.quote.by}</figcaption>
+                  </figure>
+                )}
+
+                <div className="flex flex-col gap-5 border-t border-white/15 pt-8">
+                  <span className="label text-mist">Add-on acquisitions to {pf.name}</span>
+                  <div className="grid gap-4 md:grid-cols-3">
+                    {pf.addons.map((ad) => (
+                      <div key={ad.name} className="flex flex-col gap-3 border border-white/20 p-7">
+                        <span className="label text-brass">Add-on · {ad.date}</span>
+                        <h3 className="text-[26px] leading-tight text-white">{ad.name}</h3>
+                        <p className="flex-grow text-[15px] text-mist-light">{ad.summary}</p>
+                        {ad.release && (
+                          <Link href={`/news/${ad.release}`} className="inline-flex min-h-[44px] items-center text-[15px] font-semibold text-white hover:text-mist-lighter">
+                            Read the announcement
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                    <div className="flex flex-col gap-3 bg-white/[0.06] p-7">
+                      <span className="label text-mist">Actively seeking</span>
+                      <h3 className="text-[26px] leading-tight text-white">Know a business that fits {pf.name}?</h3>
+                      <p className="flex-grow text-[15px] text-mist-light">{pf.addonFit}</p>
+                      <a href="#contact" className="inline-flex min-h-[44px] items-center text-[15px] font-semibold text-white hover:text-mist-lighter">
+                        Get in touch
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* What We Bring */}
-      <section id="what-we-bring" className="py-24 bg-gray-50 grid md:grid-cols-2 gap-12 items-center px-8">
-        <div>
-          <h2 className="text-3xl font-playfair mb-6 text-purple-800">What We Bring to the Table</h2>
-          <p className="text-gray-700 mb-6">
-            We bring a practical combination of operational experience, strategic insight, and long-term perspective. Our approach enables founder-led businesses
-            to thrive while maintaining their core identity and legacy.
-          </p>
-        </div>
-        <div className="flex flex-col gap-6">
-          {[
-            { icon: <Briefcase className="text-purple-600 w-10 h-10 mb-2" />, title: "Operators First", desc: "We’ve run businesses ourselves — we are operators, not financial engineers." },
-            { icon: <Layers className="text-purple-600 w-10 h-10 mb-2" />, title: "Strategic Depth", desc: "We bring expertise in operations, finance, and strategy, with prior roles in businesses from $2M to $200M+" },
-            { icon: <Clock className="text-purple-600 w-10 h-10 mb-2" />, title: "Growth Focus", desc: "We build sustainable value by supporting continued investment into the business" },
-          ].map(({ icon, title, desc }) => (
-            <div key={title} className="flex items-start gap-4 bg-white rounded-2xl p-6 shadow-md hover:shadow-lg border border-gray-100 transition">
-              <div className="flex-shrink-0">{icon}</div>
-              <div className="text-left">
-                <h3 className="text-xl font-semibold text-purple-800 mb-1">{title}</h3>
-                <p className="text-gray-600 text-sm">{desc}</p>
-              </div>
+        {/* News */}
+        <section id="news" className="pb-24 pt-24 md:pt-[120px]">
+          <div className="wrap flex flex-col gap-10">
+            <div className="flex flex-wrap items-baseline justify-between gap-4">
+              <h2 className="h2 text-harbor">News</h2>
+              <span className="label text-brass-text">Announcements</span>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Partners */}
-      <section id="partners" className="py-24 bg-white text-center">
-        <h2 className="text-3xl font-playfair mb-6 text-purple-800">Our Partners</h2>
-        <p className="max-w-3xl mx-auto text-gray-600 mb-10">
-          The DIO Capital team combines operational, financial, and strategic experience from world-class companies and global markets.
-        </p>
-        <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-          {partners.map((p) => {
-            return (
-              <div key={p.name} className="p-6 rounded-xl bg-gray-50 shadow-md border border-gray-100 hover:shadow-lg transition flex flex-col items-center">
-                <Image src={p.imgSrc} alt={`${p.name} photo`} width={128} height={128} className="rounded-full h-32 w-32 object-cover mb-4" />
-                <h3 className="text-xl font-semibold text-purple-800 mb-1">{p.name}</h3>
-                <p className="text-sm text-gray-500 mb-3">{p.role}</p>
-                <p className="text-gray-600 text-sm mb-4">{p.bio}</p>
-                <button onClick={() => setActivePartner(p)} className="text-purple-700 font-medium hover:underline">
-                  Read more
-                </button>
-                <a href={p.linkedin} target="_blank" className="text-purple-700 font-medium hover:underline mt-3" rel="noreferrer">
-                  LinkedIn →
-                </a>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="py-24 bg-purple-900 text-white text-center">
-        <Image src="/assets/DIO-Logo.png" alt="DIO Capital Logo" width={354} height={252} className="mx-auto mb-6 h-24 w-auto" />
-        <h2 className="text-3xl font-playfair mb-6">Contact Us</h2>
-        <p className="max-w-xl mx-auto mb-8 text-gray-200">
-          Interested in partnering or learning more about DIO Capital Partners? Reach out — we’d love to start a conversation.
-        </p>
-        <a href="mailto:info@dio-capital.com">
-          <Button className="bg-white text-purple-900 font-semibold hover:bg-gray-100 transition-all">info@dio-capital.com</Button>
-        </a>
-      </section>
-
-      <footer className="py-6 bg-[#1E2A38] text-center text-white text-sm">© 2025 DIO Capital Partners. All Rights Reserved.</footer>
-
-      {/* Partner Modal */}
-      {activePartner && (
-        <div className="fixed inset-0 z-[100]" role="dialog" aria-modal="true" aria-labelledby="partner-title">
-          <div className="absolute inset-0 bg-black/60" onClick={() => setActivePartner(null)}></div>
-          <div className="relative mx-auto my-12 max-w-2xl bg-white rounded-2xl shadow-2xl border border-gray-200 p-6 z-[110]">
-            <div className="flex items-start gap-4">
-              <Image src={activePartner.imgSrc} alt={`${activePartner.name} photo`} width={80} height={80} className="rounded-full h-20 w-20 object-cover" />
-              <div>
-                <h3 id="partner-title" className="text-2xl font-playfair text-purple-800">{activePartner.name}</h3>
-                <p className="text-sm text-gray-500">{activePartner.role}</p>
-              </div>
-            </div>
-            <div className="mt-4 whitespace-pre-line text-gray-700 leading-relaxed">{activePartner.longBio}</div>
-            <div className="mt-6 flex items-center justify-between">
-              <a href={activePartner.linkedin} target="_blank" className="text-purple-700 font-medium hover:underline" rel="noreferrer">LinkedIn →</a>
-              <Button onClick={() => setActivePartner(null)} className="bg-purple-700 hover:bg-purple-800 text-white">Close</Button>
+            <div className="border-t border-rule-strong">
+              {releases.map((r) => (
+                <div key={r.slug} className="grid items-baseline gap-2 border-b border-rule-strong py-8 md:grid-cols-[200px_1fr_200px] md:gap-10">
+                  <span className="label text-[13px] text-slate-muted">{r.date}</span>
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-[28px] leading-tight text-harbor">{r.title}</h3>
+                    <p className="text-base text-slate-muted">{r.summary}</p>
+                  </div>
+                  <Link href={`/news/${r.slug}`} className="inline-flex min-h-[44px] items-center text-[15px] font-semibold">
+                    Read the release
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        </section>
+
+        {/* Team */}
+        <section id="team" className="pb-24 pt-16 md:pb-32 md:pt-24">
+          <div className="wrap flex flex-col gap-14">
+            <div className="flex max-w-[720px] flex-col gap-5">
+              <span className="label text-brass-text">Our partners</span>
+              <h2 className="h2 text-harbor">Experience from world-class companies and global markets.</h2>
+              <p className="text-base text-slate-muted">
+                <em className="font-serif text-xl text-harbor">D</em>avid, <em className="font-serif text-xl text-harbor">I</em>saac and{" "}
+                <em className="font-serif text-xl text-harbor">O</em>mri. Not the most innovative name, we know. We save the creativity for the
+                businesses.
+              </p>
+            </div>
+            <PartnerCards partners={partners} />
+          </div>
+        </section>
+
+        {/* Contact */}
+        <section id="contact" className="bg-navy pb-24 pt-28 text-white">
+          <div className="wrap grid items-end gap-10 md:grid-cols-[7fr_5fr] md:gap-16">
+            <div className="flex flex-col gap-6">
+              <Image src="/assets/dio-mark-white.png" alt="" width={264} height={121} className="h-auto w-24" />
+              <h2 className="h2 text-white">Let us start a conversation.</h2>
+              <p className="max-w-[520px] text-mist-lighter">
+                Own a distribution or niche manufacturing business and thinking about what comes next? Or know one that fits Prowire USA? We
+                would love to hear from you.
+              </p>
+            </div>
+            <div className="flex flex-col items-start gap-4">
+              <a href={`mailto:${contactEmail}`} className="btn min-h-[56px] bg-white px-7 text-[17px] text-harbor hover:bg-stone hover:text-harbor">
+                {contactEmail}
+              </a>
+              <span className="text-sm text-mist">Founders, advisors, and intermediaries welcome.</span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <SiteFooter />
+    </>
   );
 }

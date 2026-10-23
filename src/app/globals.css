@@ -2,4 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body { height: 100%; }
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-stone font-sans text-ink antialiased; }
+  h1, h2, h3 { @apply font-serif font-normal tracking-[-0.01em]; }
+  a { @apply text-navy transition-colors hover:text-navy-deep; }
+  :focus-visible { @apply outline outline-2 outline-offset-2 outline-brass; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site px-5 md:px-10; }
+  .label { @apply font-mono text-xs uppercase tracking-[0.04em]; }
+  .btn { @apply inline-flex min-h-[48px] items-center gap-2.5 rounded-sm px-6 text-[15px] font-semibold no-underline transition-colors; }
+  .btn-primary { @apply btn bg-navy text-white hover:bg-navy-deep hover:text-white; }
+  .btn-outline { @apply btn border border-navy text-navy hover:bg-navy hover:text-white; }
+  .h1 { @apply text-[42px] leading-[1.05] md:text-[52px] xl:text-[68px] md:leading-[1.04]; }
+  .h2 { @apply text-[36px] leading-[1.1] md:text-[52px] md:leading-[1.08]; }
+}

@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DIO Capital Partners website
 
-## Getting Started
-
-First, run the development server:
+Next.js site for [dio-capital.com](https://www.dio-capital.com). Pushing to `main` deploys to production on Vercel; other branches get preview deployments.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build, also catches type errors
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Editing content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All copy lives in `src/content/site.ts`: investment criteria, FAQs, partners and bios, portfolio companies and add-ons, and press releases.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To announce a new acquisition:
 
-## Learn More
+1. Add the photo to `public/assets/`.
+2. Add a release to the top of `releases` (newest first). It gets its own page at `/news/<slug>` and appears in the homepage News list.
+3. Add the company to `platforms`, or to a platform's `addons` with `release: "<slug>"` so its card links to the announcement.
 
-To learn more about Next.js, take a look at the following resources:
+## Broker criteria PDF
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`public/DIO-Capital-Partners-Investment-Criteria.pdf` is printed from the `/criteria` page. After changing criteria, portfolio or partner details, run the site locally and regenerate it:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build && npm run start
+"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --headless=new --no-pdf-header-footer --print-to-pdf="public\DIO-Capital-Partners-Investment-Criteria.pdf" http://localhost:3000/criteria
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The page must stay on a single Letter page (816×1056 px).
